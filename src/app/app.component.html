@@ -1,0 +1,55 @@
+
+<div class="container mt-4">
+  <div class="card-body">
+    <form [formGroup]="form">
+      <div class="form-group row mb-3" >
+          <label for="nombre" class="col-form-label col-sm-2" >Nombre</label>
+          <div class="col-sm-10">
+              <input type="text" formControlName="nombre" class="form-control" [(ngModel)]="nombre" [ngClass]="{'is-invalid': submitted && f['nombre'].errors}"/>
+              <div *ngIf="submitted && f['nombre'].errors" class="invalid-feedback">
+                  <div *ngIf="f['nombre'].errors['required']">Nombre es requerido</div>
+                  <div *ngIf="f['nombre'].errors['minlength']">Nombre debe tener mínimo 4 caracteres</div>
+                  <div *ngIf="f['nombre'].errors['maxlength']">Nombre no debe exceder los 30 caracteres</div>
+              </div>
+          </div>
+      </div>
+      <div class="form-group row mb-3">
+          <label for="precio" class="col-form-label col-sm-2">Correo</label>
+          <div class="col-sm-10">
+              <input type="text" formControlName="correo" class="form-control" [(ngModel)]="correo" [ngClass]="{'is-invalid': submitted && f['correo'].errors}"/>
+              <div *ngIf="submitted && f['correo'].errors" class="invalid-feedback">
+                  <div *ngIf="f['correo'].errors['required']">Correo es requerido</div>
+                  <div *ngIf="f['correo'].errors['pattern']">El correo no esta bien escrito</div>
+              </div>
+          </div>
+      </div>
+      <div class="form-group row mb-3">
+          <label for="categoria" class="col-form-label col-sm-2">Numero Celular</label>
+          <div class="col-sm-10">
+              <input type="text" formControlName="numero" class="form-control" required  [(ngModel)]="numero" [ngClass]="{'is-invalid': submitted && f['numero'].errors}"/>
+              <div *ngIf="submitted && f['numero'].errors" class="invalid-feedback">
+                  <div *ngIf="f['numero'].errors['required']">El Numero Celular es requerido</div>
+                  <div *ngIf="f['numero'].errors['pattern']">Revise que el celular tenga el formato de ###-###-### ej(121-231-312)</div>
+              </div>
+          </div>
+      </div>
+      <div class="form-group row mb-3">
+          <div class="col-3 offset-2">
+              <button class="btn btn-outline-primary btn-lg float-start" (click)="onSubmit()"  role="button">Enviar</button>
+          </div>
+          <div class="col-3 offset-2">
+            <button class="btn btn-outline-primary btn-lg float-center" (click)="onReset()"  role="button">Reset</button>
+        </div>
+      </div>
+  </form>
+
+  <div class="card" *ngIf="formValido">
+    <div class="card-body">
+      <p>{{nombre}}</p>
+      <p>{{correo}}</p>
+      <p>{{numero}}</p>
+    </div>
+  </div>
+  </div>
+</div>
+
